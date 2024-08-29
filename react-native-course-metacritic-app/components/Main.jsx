@@ -1,9 +1,11 @@
-import { StatusBar } from 'expo-status-bar';
+import { Link } from 'expo-router';
 import { useEffect, useState } from 'react';
 import { getLatestGames } from '../lib/metacritic';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { AnimatedGameCard } from './GameCard';
-import { Logo } from './logo';
+import { Logo } from './Logo';
+import { CircleInfoIcon } from './Icons';
+
 //import Constants from 'expo-constants';
 import {
   //StyleSheet,
@@ -14,7 +16,13 @@ import {
   FlatList,
   ActivityIndicator,
   //SafeAreaView,
+  Pressable,
 } from 'react-native';
+
+import { styled } from 'nativewind';
+import { Screen } from './Screen';
+
+const StyledPressable = styled(Pressable);
 
 // Se puede utilizar import o require para importar imágenes
 // const icon = require("./assets/icon.png");
@@ -30,10 +38,7 @@ export function Main() {
   }, [games]);
 
   return (
-    <View style={{ paddingTop: insets.top, paddingBottom: insets.bottom }}>
-      <View>
-        <Logo style={{ marginBottom: 20 }} />
-      </View>
+    <Screen>
       {/* <Image source={icon} style={{ width: 180, height: 100 }} /> */}
       {/* Para cargar una imagen remota se hace de la siguiente forma */}
       {/* <Image
@@ -69,7 +74,7 @@ export function Main() {
           )}
         />
       )}
-    </View>
+    </Screen>
   );
 }
 
